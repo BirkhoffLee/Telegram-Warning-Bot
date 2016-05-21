@@ -1,0 +1,28 @@
+{
+  "name": "telegram-earthquake-bot",
+  "version": "1.0.0",
+  "description": "A Telegram bot for notifying earthquakes.",
+  "main": "index.coffee",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BirkhoffLee/Telegram-Earthquake-Bot.git"
+  },
+  "author": "Birkhoff Lee <birkhoff.lee.cn@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BirkhoffLee/Telegram-Earthquake-Bot/issues"
+  },
+  "homepage": "https://github.com/BirkhoffLee/Telegram-Earthquake-Bot#readme",
+  "devDependencies": {
+    "coffee-script": "latest",
+    "mocha": "^2.4.5",
+    "supertest": "^1.2.0"
+  },
+  "dependencies": {
+    "telegram-bot-api": "^1.1.0",
+    "xml2js": "^0.4.16"
+  }
+}
