@@ -75,4 +75,5 @@ ehthumbs.db
 Thumbs.db
 
 # CUSTOM
-lib/
+src/dist/
+
