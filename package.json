@@ -1,31 +1,33 @@
 {
-  "name": "telegram-earthquake-bot",
+  "name": "telegram-warning-bot",
   "version": "1.0.0",
-  "description": "A Telegram bot for notifying terrible weathers.",
+  "description": "A Telegram bot for pushing real-time emergency alerts to subscribers.",
   "main": "index.coffee",
   "scripts": {
     "test": "mocha"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BirkhoffLee/Telegram-Earthquake-Bot.git"
+    "url": "git+https://github.com/BirkhoffLee/Telegram-Warning-Bot.git"
   },
   "author": "Birkhoff Lee <birkhoff.lee.cn@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/BirkhoffLee/Telegram-Earthquake-Bot/issues"
+    "url": "https://github.com/BirkhoffLee/Telegram-Warning-Bot/issues"
   },
-  "homepage": "https://github.com/BirkhoffLee/Telegram-Earthquake-Bot#readme",
+  "homepage": "https://github.com/BirkhoffLee/Telegram-Warning-Bot#readme",
   "devDependencies": {
     "coffee-script": "latest",
     "mocha": "^2.4.5",
     "supertest": "^1.2.0"
   },
   "dependencies": {
-    "bluebird": "^3.4.0",
     "body-parser": "^1.15.1",
     "express": "^4.13.4",
+    "js2xmlparser": "^1.0.0",
     "morgan": "^1.7.0",
-    "telegram-bot-api": "^1.1.0"
+    "require-directory": "^2.1.1",
+    "telegram-bot-api": "^1.1.0",
+    "xml2js": "^0.4.16"
   }
 }

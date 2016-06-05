@@ -1,7 +1,7 @@
 username = null
 
 bot = new new require('telegram-bot-api')
-    token: global.config.telegram.token
+    token: global.Bot.config.telegram.token
     updates:
         enabled: true
 
@@ -29,6 +29,13 @@ sendMessage = (message, text) ->
         text: text
     .catch sendMessageErrorHandler
 
+sendWarning = (to, message) ->
+    bot.sendMessage
+        chat_id: to
+        parse_mode: "html"
+        text: text
+    .catch sendMessageErrorHandler
+
 bot.on 'message', (message) ->
     if !message.text?
         return
@@ -43,4 +50,5 @@ bot.on 'message', (message) ->
 module.exports =
     bot: bot
     sendMessage: sendMessage
+    sendWarning: sendWarning
     username: username
