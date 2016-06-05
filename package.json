@@ -1,7 +1,7 @@
 {
   "name": "telegram-earthquake-bot",
   "version": "1.0.0",
-  "description": "A Telegram bot for notifying earthquakes.",
+  "description": "A Telegram bot for notifying terrible weathers.",
   "main": "index.coffee",
   "scripts": {
     "test": "mocha"
@@ -23,8 +23,6 @@
   },
   "dependencies": {
     "bluebird": "^3.4.0",
-    "decompress": "^4.0.0",
-    "telegram-bot-api": "^1.1.0",
-    "xml2js": "^0.4.16"
+    "telegram-bot-api": "^1.1.0"
   }
 }
