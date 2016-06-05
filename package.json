@@ -23,6 +23,9 @@
   },
   "dependencies": {
     "bluebird": "^3.4.0",
+    "body-parser": "^1.15.1",
+    "express": "^4.13.4",
+    "morgan": "^1.7.0",
     "telegram-bot-api": "^1.1.0"
   }
 }

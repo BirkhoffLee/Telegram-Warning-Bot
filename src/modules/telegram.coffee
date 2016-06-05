@@ -1,3 +1,5 @@
+username = null
+
 bot = new new require('telegram-bot-api')
     token: global.config.telegram.token
     updates:
@@ -5,7 +7,7 @@ bot = new new require('telegram-bot-api')
 
 bot.getMe()
     .then (data) ->
-        global.Bot.telegram.username = data.username
+        username = data.username
         console.log "Successfully conencted to Telegram API Server.\n"
     .catch (err) ->
         if err.name == "RequestError"
@@ -36,8 +38,9 @@ bot.on 'message', (message) ->
     firstPiece = message.text.split(" ")[0]
     command = firstPiece.replace(new RegExp("@#{username}", "i"), "").slice(1).trim()
 
-    global.Bot.commandHandler command
+    global.Bot.commandHandler command, message
 
 module.exports =
     bot: bot
     sendMessage: sendMessage
+    username: username
