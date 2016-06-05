@@ -1,5 +1,3 @@
-Promise = require 'bluebird'
-
 global.Bot = {}
 
 global.Bot.config =
