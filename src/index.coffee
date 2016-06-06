@@ -2,7 +2,7 @@ global.Bot = {}
 
 global.Bot.config =
     telegram:
-        token: "190533682:AAENNr8amcOx2r9Mwy5YJY-VjLiNMx8DBqY"
+        token: ""
     httpServer:
         port: process.env.PORT
         ip: process.env.IP

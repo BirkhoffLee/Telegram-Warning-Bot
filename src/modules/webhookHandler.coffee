@@ -25,7 +25,7 @@ app.use bodyParser.text
 
 # Launch server
 app.listen port, ip, ->
-    console.log "Web server launched and is listening on #{ip}:#{port}."
+    console.log "Web server has launched and is listening on #{ip}:#{port}."
 
 # The last route: 404 Not Found
 app.use (req, res, next) ->
