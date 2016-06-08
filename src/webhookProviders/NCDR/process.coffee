@@ -1,5 +1,5 @@
-parseXML    = require('xml2js').parseString
-fs          = require 'fs'
+Q             = require "q"
+parseXML      = require('xml2js').parseString
 
 identifiers =
     earthquakeReport : "\u5730\u9707\u5831\u544a\u5716"
@@ -42,17 +42,21 @@ replacements = [
     { " 9 "             : "#{identifiers.nine  }"  }
 ]
 
-fs.readFile '1.cap', (_e, _r) ->
-    parseXML _r, (e, cap) ->
-        if cap.alert.status.toString() == 'Test'
-            # return 1
-            '';
+module.exports = (xmlData) ->
+    deferred = Q.defer()
+
+    parseXML xmlData, (e, cap) ->
+
+        if cap.alert.Test || cap.alert.status.toString() == 'Test'
+            deferred.reject "Ignoring test item."
+            return
 
         alertInfo = cap.alert.info[0]
-        event = alertInfo.event.toString()
+        event     = alertInfo.event.toString()
 
         switch event
             when identifiers.earthquake
+
                 description = alertInfo.description.toString()
                 replace     = Object.keys(replacements[6]).toString()
                 description = description.replace new RegExp(replace, "g"), replacements[6][replace]
@@ -72,8 +76,10 @@ fs.readFile '1.cap', (_e, _r) ->
 
                     result  = result.replace new RegExp(replace, "g"), replacements[i][replace]
 
-                console.log result.trim()
+                deferred.resolve result.trim()
+
             when identifiers.flood
+
                 eventDateObject = new Date alertInfo.effective.toString()
                 description     = alertInfo.description.toString()
                 instruction     = alertInfo.instruction.toString()
@@ -85,4 +91,6 @@ fs.readFile '1.cap', (_e, _r) ->
                     replace = Object.keys(r).toString()
                     result  = result.replace new RegExp(replace, "g"), replacements[i][replace]
 
-                console.log result.trim()
+                deferred.resolve result.trim()
+
+    return deferred.promise

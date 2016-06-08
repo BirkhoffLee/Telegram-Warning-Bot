@@ -21,13 +21,22 @@ sendMessageErrorHandler = (err) ->
     console.error err
 
 sendMessage = (message, text) ->
-    bot.sendMessage
-        chat_id: message.chat.id
-        reply_to_message_id: message.message_id
-        disable_web_page_preview: "true"
-        parse_mode: "html"
-        text: text
-    .catch sendMessageErrorHandler
+    if "object" == typeof message
+        bot.sendMessage
+            chat_id: message.chat.id
+            reply_to_message_id: message.message_id
+            disable_web_page_preview: "true"
+            parse_mode: "html"
+            text: text
+        .catch sendMessageErrorHandler
+    else
+        # The "message" here is a chat id
+        bot.sendMessage
+            chat_id: message
+            disable_web_page_preview: "true"
+            parse_mode: "html"
+            text: text
+        .catch sendMessageErrorHandler
 
 sendWarning = (to, message) ->
     bot.sendMessage
@@ -40,7 +49,7 @@ bot.on 'message', (message) ->
     if !message.text?
         return
 
-    console.log "@#{message.from.username}: #{message.text}"
+    console.log "@#{message.from.username} (#{message.from.id} @ #{message.chat.id}): #{message.text}"
 
     firstPiece = message.text.split(" ")[0]
     command = firstPiece.replace(new RegExp("@#{username}", "i"), "").slice(1).trim()
