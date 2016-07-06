@@ -5,6 +5,7 @@ identifiers =
     earthquakeReport : "\u5730\u9707\u5831\u544a\u5716"
     officialAdvice   : "\u5b98\u65b9\u5efa\u8b70\uff1a"
     earthquake       : "\u5730\u9707"
+    typhoon          : "\u98b1\u98a8"
     openParen        : "\uff08"
     closeParen       : "\uff09"
     flood            : "\u6df9\u6c34"
@@ -92,5 +93,9 @@ module.exports = (xmlData) ->
                     result  = result.replace new RegExp(replace, "g"), replacements[i][replace]
 
                 deferred.resolve result.trim()
+
+            when idnetifiers.typhoon
+
+                deferred.resolve description.replace(/ \[/g, "\n[").trim()
 
     return deferred.promise
