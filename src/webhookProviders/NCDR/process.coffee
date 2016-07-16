@@ -94,7 +94,7 @@ module.exports = (xmlData) ->
 
                 deferred.resolve result.trim()
 
-            when idnetifiers.typhoon
+            when identifiers.typhoon
 
                 deferred.resolve description.replace(/ \[/g, "\n[").trim()
 
