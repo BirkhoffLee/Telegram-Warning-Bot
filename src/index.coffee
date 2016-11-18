@@ -1,12 +1,22 @@
+EventEmitter = require('events').EventEmitter; 
+
+# Initalize global vars
 global.Bot = {}
+global.Bot.event = new EventEmitter()
 
-global.Bot.config =
-    telegram:
-        token: ""
-    httpServer:
-        port: process.env.PORT
-        ip: process.env.IP
+# System-wide modules
+global.Bot.config = require './config.json'
+global.Bot.broadcaster = require './broadcaster.coffee'
+global.Bot.launchChecks = require './checks.coffee'
 
-global.Bot.webhookHandler = require './modules/webhookHandler.coffee'
-global.Bot.commandHandler = require './modules/commandHandler.coffee'
-global.Bot.telegram       = require './modules/telegram.coffee'
+# Initalize NCDR module
+global.Bot.NCDR = require './ncdr.coffee'
+
+# HOOK: Launch check loops
+#       when successfully connected
+#       to Telegram server
+global.Bot.event.on 'telegram_connected', ->
+	global.Bot.launchChecks()
+
+# Initalize Telegram module and start connecting
+global.Bot.telegram = require './telegram.coffee'

@@ -1,14 +1,15 @@
 username = null
 
 bot = new new require('telegram-bot-api')
-    token: global.Bot.config.telegram.token
+    token: global.Bot.config.telegram_token
     updates:
         enabled: true
 
 bot.getMe()
     .then (data) ->
         username = data.username
-        console.log "Successfully conencted to Telegram API Server.\n"
+        console.log "Successfully conencted to Telegram API Server."
+        global.Bot.event.emit 'telegram_connected'
     .catch (err) ->
         if err.name == "RequestError"
             console.error "Unable to connect to Telegram API Server."
@@ -42,19 +43,19 @@ sendWarning = (to, message) ->
     bot.sendMessage
         chat_id: to
         parse_mode: "html"
-        text: text
+        text: message
     .catch sendMessageErrorHandler
 
-bot.on 'message', (message) ->
-    if !message.text?
-        return
+# bot.on 'message', (message) ->
+#     if !message.text?
+#         return
 
-    console.log "@#{message.from.username} (#{message.from.id} @ #{message.chat.id}): #{message.text}"
+#     console.log "@#{message.from.username} (#{message.from.id} @ #{message.chat.id}): #{message.text}"
 
-    firstPiece = message.text.split(" ")[0]
-    command = firstPiece.replace(new RegExp("@#{username}", "i"), "").slice(1).trim()
+#     firstPiece = message.text.split(" ")[0]
+#     command = firstPiece.replace(new RegExp("@#{username}", "i"), "").slice(1).trim()
 
-    global.Bot.commandHandler command, message
+#     global.Bot.commandHandler command, message
 
 module.exports =
     bot: bot
