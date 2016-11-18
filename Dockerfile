@@ -1,34 +1,28 @@
-FROM ubuntu:14.04
+FROM node:0.10-slim
 
-MAINTAINER Birkhoff Lee <birkhoff.lee.cn@gmail.com>
+MAINTAINER Birkhoff Lee <admin@birkhoff.me>
 
-# Set the environment up
 WORKDIR ~
-RUN apt-get update; \
-    apt-get upgrade -y; \
-    apt-get install nodejs-legacy npm git ca-certificates -y -q --no-install-recommends; \
-    apt-get clean; \
-    apt-get autoclean; \
-    apt-get autoremove; \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-# Install forever and coffeeScript library
-RUN npm i -g forever coffee-script
-
-# Download Telegram-Warning-Bot
-WORKDIR ~
-RUN mkdir /var/www; \
+RUN export NODE_ENV=production; \
+    echo "deb http://deb.debian.org/debian jessie main" > /etc/apt/sources.list; \
+    apt-get update; \
+    apt-get install unzip wget -y -q --no-install-recommends; \
+    npm i -g forever coffee-script; \
+    mkdir /var/www; \
     chmod 755 /var/www; \
     cd /var/www; \
-    git clone https://github.com/BirkhoffLee/Telegram-Warning-Bot
+    wget "https://github.com/BirkhoffLee/Telegram-Warning-Bot/archive/master.zip"; \
+    unzip master.zip -d .; \
+    rm master.zip; \
+    cd jumper-master; \
+    npm install; \
+    apt-get clean; \
+    apt-get autoclean; \
+    apt-get autoremove -y; \
+    apt-get remove --purge -y $BUILD_PACKAGES $(apt-mark showauto); \
+    rm -rf /var/lib/{apt,dpkg,cache,log}/ /tmp/* /var/tmp/*;
 
-# Prepare Telegram-Warning-Bot
-WORKDIR /var/www/Telegram-Warning-Bot
-RUN npm i
+EXPOSE 1827
 
-# Ports
-EXPOSE 1828
-
-# Run
 WORKDIR /var/www/Telegram-Warning-Bot/src
-CMD /bin/bash -c "export PORT=1828; export IP=0.0.0.0; forever start -c coffee index.coffee &> /dev/null && forever logs -f 0"
+CMD /bin/bash -c "forever start -c coffee index.coffee &> /dev/null && forever logs -f 0"
