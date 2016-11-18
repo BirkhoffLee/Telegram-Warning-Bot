@@ -1,0 +1,22 @@
+{
+  "name": "telegram-warning-bot",
+  "version": "1.0.0",
+  "description": "A Telegram bot for pushing real-time emergency alerts to subscribers.",
+  "main": "src/index.coffee",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BirkhoffLee/Telegram-Warning-Bot.git"
+  },
+  "author": "Birkhoff Lee <admin@birkhoff.me>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BirkhoffLee/Telegram-Warning-Bot/issues"
+  },
+  "homepage": "https://github.com/BirkhoffLee/Telegram-Warning-Bot#readme",
+  "dependencies": {
+    "request": "^2.78.0"
+  }
+}
