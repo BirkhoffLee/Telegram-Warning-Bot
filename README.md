@@ -4,7 +4,7 @@ A Telegram bot for pushing real-time emergency alerts to subscribers.
 # Deployment
 Simply run this to make the bot running:
 ```
-$ docker run -v /path/to/config.json:/var/www/Telegram-Warning-Bot/src/config.json:ro -itd birkhofflee/telegram-warning-bot
+$ docker run -v /path/to/config.json:/var/www/Telegram-Warning-Bot-master/src/config.json:ro -itd birkhofflee/telegram-warning-bot
 ```
 
 # Configuration
