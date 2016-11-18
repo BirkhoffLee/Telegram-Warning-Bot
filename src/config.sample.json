@@ -1,0 +1,8 @@
+{
+	"telegram_token": "",
+	"NCDR": {
+		"checkURL": "https://alerts.ncdr.nat.gov.tw/JSONAtomFeed.ashx",
+		"checkDataFrequencyInMs": 360000,
+		"categoriesToBroadcast": ["地震"]
+	}
+}
