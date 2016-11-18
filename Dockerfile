@@ -14,7 +14,7 @@ RUN export NODE_ENV=production; \
     wget "https://github.com/BirkhoffLee/Telegram-Warning-Bot/archive/master.zip"; \
     unzip master.zip -d .; \
     rm master.zip; \
-    cd jumper-master; \
+    cd Telegram-Warning-Bot-master; \
     npm install; \
     apt-get clean; \
     apt-get autoclean; \
@@ -24,5 +24,5 @@ RUN export NODE_ENV=production; \
 
 EXPOSE 1828
 
-WORKDIR /var/www/Telegram-Warning-Bot/src
+WORKDIR /var/www/Telegram-Warning-Bot-master/src
 CMD /bin/bash -c "forever start -c coffee index.coffee &> /dev/null && forever logs -f 0"
