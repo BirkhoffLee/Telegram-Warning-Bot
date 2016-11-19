@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/BirkhoffLee/Telegram-Warning-Bot#readme",
   "dependencies": {
-    "request": "^2.78.0"
+    "request": "^2.78.0",
+    "telegram-bot-api": "^1.2.0"
   }
 }
